@@ -1,5 +1,7 @@
 function App() {
-  return <>Ready to code with Mantine, a router would be nice in there 😺</>
+  return (
+    <>I am ready to code with Mantine, a router would be nice in there 😺</>
+  );
 }
 
-export default App
+export default App;
