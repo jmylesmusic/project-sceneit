@@ -1,6 +1,27 @@
+import { Routes, Route } from "react-router-dom";
+import {
+  Home,
+  About,
+  Navbar,
+  Footer,
+  PageNotFound,
+  MovieDetailsPage,
+} from "./pages";
+
 function App() {
   return (
-    <>I am ready to code with Mantine, a router would be nice in there 😺</>
+    <div>
+      {/* Use styling inside DIV */}
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/:movieId" element={<MovieDetailsPage />} />
+        {/*  other Route */}
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+      <Footer />
+    </div>
   );
 }
 
