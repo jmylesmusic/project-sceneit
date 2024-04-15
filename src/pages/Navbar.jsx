@@ -1,21 +1,29 @@
+import React, { useState } from "react";
 import { Autocomplete, Group, Burger, rem } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { IconSearch } from "@tabler/icons-react";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "../styles/HeaderSearch.module.css";
+import { useAuth } from "../components/AuthContext";
+import SignIn from "../components/SignIn";
+
 function Navbar() {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [opened, { toggle }] = useDisclosure(false);
+  const [signInOpened, setSignInOpened] = useState(false);
 
+  const randomMovieId = Math.floor(Math.random() * 1012272) + 1;
   const handleRandomMovieClick = () => {
-    const randomMovieId = Math.floor(Math.random() * 1012272) + 1;
-    navigate(`/${randomMovieId}`);
+    navigate(`/movies/${randomMovieId}`);
   };
+
   const links = [
     { link: "/", label: "Movies" },
-    { link: "/", label: "Pricing" },
+    // { link: `/users/${user.userId}`, label: "User" },
     { link: "/about", label: "About" },
+    { link: `/movies/${randomMovieId}`, label: "Random Movie!" },
   ];
 
   // Combine standard links with the dynamic "Random Movie!" link
@@ -25,28 +33,22 @@ function Navbar() {
         {link.label}
       </Link>
     )),
-    <a
-      key="Random Movie!"
-      onClick={handleRandomMovieClick}
-      className={classes.link}
-      style={{ cursor: "pointer" }}
-    >
-      Random Movie!
-    </a>,
   ];
 
   return (
-    <header className={classes.header}>
-      <div className={classes.inner}>
-        <Group>
-          <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-          <MantineLogo size={28} />
-        </Group>
-
-        <Group>
-          <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
-            {items}
+    <>
+      <header className={classes.header}>
+        <div className={classes.inner}>
+          <Group>
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              size="sm"
+              hiddenFrom="sm"
+            />
+            <MantineLogo size={28} />
           </Group>
+
           <Autocomplete
             className={classes.search}
             placeholder="Search"
@@ -66,9 +68,25 @@ function Navbar() {
               "Blitz.js",
             ]}
           />
-        </Group>
-      </div>
-    </header>
+
+          <Group>
+            <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
+              {items}
+              {user ? (
+                <button type="button" onClick={logout}>
+                  Logout
+                </button>
+              ) : (
+                <button type="button" onClick={() => setSignInOpened(true)}>
+                  Login
+                </button>
+              )}
+            </Group>
+          </Group>
+        </div>
+      </header>
+      <SignIn opened={signInOpened} setOpened={setSignInOpened} />
+    </>
   );
 }
 

@@ -7,6 +7,7 @@ import {
   Footer,
   PageNotFound,
   MovieDetailsPage,
+  User,
 } from "./pages";
 import classes from "./styles/App.module.css"; // Import the CSS module here
 
@@ -20,7 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/:movieId" element={<MovieDetailsPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+          <Route path="/users/:userId" element={<User />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>

@@ -9,6 +9,18 @@ function MovieCardsCarousel(props) {
   const [error, setError] = useState(null);
   // const theme = useMantineTheme();
   const API_KEY = import.meta.env.VITE_PRIVATE_API_KEY;
+  // Define a mapping from URL segments to user-friendly titles
+  const typeTitles = {
+    now_playing: "Now Playing",
+    top_rated: "Top Rated",
+    popular: "Popular Movies",
+    upcoming: "Upcoming Releases",
+    favorite: "My Favorites", // Assuming you have this type too
+  };
+
+  // Extract the last part of the URL to use as key in the dictionary
+  const key = listtype.split("/").pop();
+  const title = typeTitles[key] || "Movies"; // Default title if key is not found
 
   useEffect(() => {
     async function fetchData() {
@@ -45,10 +57,10 @@ function MovieCardsCarousel(props) {
 
   return (
     <>
-      <div>{listtype}</div>
+      <div>{title}</div>
       <Carousel
         withIndicators
-        height={200}
+        height={250}
         slideSize={{ base: "100%", sm: "50%", md: "33.333333%" }}
         slideGap={{ base: 0, sm: "md" }}
         loop

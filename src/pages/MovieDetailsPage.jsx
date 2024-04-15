@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   Card,
   Image,
@@ -22,22 +22,28 @@ function MovieDetailsPage() {
   const [error, setError] = useState(null);
   const theme = useMantineTheme();
   const API_KEY = import.meta.env.VITE_PRIVATE_API_KEY;
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
       const url = `https://api.themoviedb.org/3/movie/${movieId}`;
-      console.log("Fetch URL:", url); // Ensure URL is correctly formed
       const options = {
         method: "GET",
         headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${API_KEY}`,
+          Accept: "application/json",
+          Authorization: `Bearer ${API_KEY}`, // Ensure API_KEY is correctly configured
         },
       };
+
+      console.log("Fetch URL:", url); // Ensure URL is correctly formed
 
       try {
         const response = await fetch(url, options);
         if (!response.ok) {
+          if (response.status === 404) {
+            navigate("/404"); // Redirect to the NotFoundPage
+            return;
+          }
           throw new Error(
             "Network response was not ok: " + response.statusText
           );
@@ -46,15 +52,15 @@ function MovieDetailsPage() {
         setMovie(data);
         console.log("Movie Data:", data); // Log the movie data
       } catch (error) {
-        console.error("Fetch error:", error);
-        setError("Failed to load movie data: " + error);
+        console.error("Fetch error:", error.message);
+        setError(`Failed to load movie data: ${error.message}`);
       } finally {
         setLoading(false);
       }
     }
 
     fetchData();
-  }, [movieId]);
+  }, [movieId, navigate]);
 
   if (loading) return <Loader />; // Using Mantine's Loader for better UI
   if (error) return <div>Error: {error}</div>;
