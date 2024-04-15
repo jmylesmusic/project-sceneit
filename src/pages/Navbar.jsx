@@ -15,12 +15,8 @@ function Navbar() {
   const { user, logout } = useAuth();
   const [opened, { toggle }] = useDisclosure(false);
   const [signInOpened, setSignInOpened] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
 
   const randomMovieId = Math.floor(Math.random() * 1012272) + 1;
-  const handleRandomMovieClick = () => {
-    navigate(`/movies/${randomMovieId}`);
-  };
 
   const API_KEY = import.meta.env.VITE_PRIVATE_API_KEY; // Make sure to define your API key in the .env file
 
