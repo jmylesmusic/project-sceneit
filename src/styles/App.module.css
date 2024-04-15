@@ -1,0 +1,11 @@
+/* App.module.css */
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mainContent {
+  flex: 1;
+  /* This ensures that the main content area expands and pushes the footer down */
+}
