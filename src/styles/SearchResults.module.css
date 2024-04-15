@@ -1,0 +1,31 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust min and max as needed */
+    gap: 20px; /* Adjust the gap between cards */
+    align-items: stretch; /* This will make sure that the cards stretch to fill the grid area */
+  }
+  
+  .movieCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Ensures that each card extends full height of the grid cell */
+    margin-bottom: 20px; /* Add some space at the bottom of each card */
+  }
+  
+
+  /* Adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .gridContainer {
+      grid-template-columns: 1fr; /* Changes to single column layout */
+      /* If you want to apply listContainer styles, make sure listContainer is used in the component */
+    }
+  
+    /* If you use a ul/li structure for the list layout, apply this class to ul */
+    .listContainer {
+      list-style-type: none; /* Removes bullet points */
+      padding: 0; /* Resets padding which is usually present on lists */
+      margin: 0; /* Resets any default margins */
+    }
+  }
+  
