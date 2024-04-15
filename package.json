@@ -13,6 +13,8 @@
     "@mantine/carousel": "^7.7.2",
     "@mantine/core": "^7.7.1",
     "@mantine/hooks": "^7.7.1",
+    "@mantinex/mantine-logo": "^1.0.1",
+    "@tabler/icons-react": "^3.2.0",
     "dotenv": "^16.4.5",
     "embla-carousel-react": "^7.1.0",
     "react": "^18.2.0",

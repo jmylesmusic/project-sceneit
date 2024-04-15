@@ -7,9 +7,10 @@ const Home = () => {
 
   return (
     <div>
+      {/* <MovieCardsCarousel listtype={`${url}/favorite`} /> */}
       <MovieCardsCarousel listtype={`${url}/now_playing`} />
-      <MovieCardsCarousel listtype={`${url}/popular`} />
       <MovieCardsCarousel listtype={`${url}/top_rated`} />
+      <MovieCardsCarousel listtype={`${url}/popular`} />
       <MovieCardsCarousel listtype={`${url}/upcoming`} />
     </div>
   );

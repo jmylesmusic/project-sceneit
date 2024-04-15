@@ -1,0 +1,37 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background-color: #121213; /* Dark background for the footer */
+  color: #ffffff; /* Light text for readability */
+  margin-top: auto; /* This will push the footer to the bottom */
+  padding: 0; /* Removes padding */
+  width: 100vw; /* Set width to 100% of the viewport width */
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+  margin: 0 auto; /* Center the footer if needed */
+  /* Remove any margin that might affect the width */
+}
+
+.content {
+  text-align: center;
+}
+
+.link {
+  color: #58a6ff; /* Light blue link color for visibility on dark background */
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px; /* Spacing above the link */
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* This will ensure the aspect ratio is maintained */
+  max-width: 20%; /* This ensures it doesn't exceed the container width */
+  display: block; /* SVGs are inline by default which can cause spacing issues */
+  margin: 0 auto; /* This centers the logo in the footer */
+}

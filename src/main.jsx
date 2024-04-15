@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { MantineProvider } from "@mantine/core";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./components/AuthContext"; // Import AuthProvider
 
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <MantineProvider theme={theme}>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </MantineProvider>
     </BrowserRouter>
   </React.StrictMode>
