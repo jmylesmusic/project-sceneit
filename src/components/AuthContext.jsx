@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const URL = import.meta.env.VITE_URL_IRONSACK;
-  console.log(URL)
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const login = async (username, password) => {
     // Simulate fetching user data from a local JSON server
 
@@ -13,7 +15,6 @@ export const AuthProvider = ({ children }) => {
       `${URL}/users?logInName=${username}&password=${password}`
     );
     const users = await response.json();
-    console.log(`Users:`, users)
     if (users.length > 0) {
       setUser({
         userId: users[0].userId,
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null); // User is logged out and user data is cleared
+    navigate("/"); // Redirect to home ("/") page
   };
 
   return (
