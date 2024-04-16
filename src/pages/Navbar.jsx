@@ -9,6 +9,7 @@ import { useAuth } from "../components/AuthContext";
 import SignIn from "../components/SignIn";
 import { useForm } from "@mantine/form";
 import SearchBar from "../components/SearchBar";
+import websiteLogo from "../images/logo-no-background.svg";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -75,20 +76,21 @@ function Navbar() {
 
   const links = [
     { link: "/", label: "Movies" },
+    { link: `/users/1`, label: "User" },
     { link: "/about", label: "About" },
     { link: `/movies/${randomMovieId}`, label: "Random Movie!" },
   ];
 
-  // Add the "User" link if a user is signed in
-  if (user) {
-    links.push({ link: `/users/${user.userId}`, label: "User" });
-  }
+  // Combine standard links with the dynamic "Random Movie!" link
+  const items = [
+    ...links.map((link) => (
+      <Link key={link.label} to={link.link} className={classes.link}>
+        {link.label}
+      </Link>
+    )),
+  ];
 
-  const items = links.map((link) => (
-    <Link key={link.label} to={link.link} className={classes.link}>
-      {link.label}
-    </Link>
-  ));
+  const searchItems = [];
 
   return (
     <>
@@ -101,7 +103,7 @@ function Navbar() {
               size="sm"
               hiddenFrom="sm"
             />
-            <MantineLogo size={28} />
+            <img src={websiteLogo} height={"40px"} />
           </Group>
 
           <SearchBar />
@@ -125,7 +127,7 @@ function Navbar() {
               size="sm"
               hiddenFrom="sm"
             />
-            <MantineLogo size={28} />
+            <img src={websiteLogo} height={"40px"} />
           </Group>
         }
         padding="md"
@@ -135,6 +137,14 @@ function Navbar() {
         overlayProps={{ opacity: 0.9, blur: 10, center: true }}
         offset={10}
         withCloseButton={false}
+        // Do we want  to be max width ?
+
+        // styles={{
+        //   content: {
+        //     width: 'auto',
+        //     maxWidth: '50%', // Ensure the Drawer does not exceed the screen width
+        //   },
+        // }}
       >
         <div className={classes.drawerLinks}>
           {items}
