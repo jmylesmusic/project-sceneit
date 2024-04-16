@@ -1,13 +1,14 @@
 import { useParams } from "react-router-dom";
-
+import MovieCardsCarousel from "../components/MovieCardsCarousel";
 const User = () => {
   const { userId } = useParams();
 
   return (
     <div>
-      {" "}
-      <p>{userId}</p>
-      DA USER PAGEEE :D
+      <img src="" />
+      <p>John Doe</p>
+      <p>Favorite Movies:</p>
+      <p>Carousel</p>
     </div>
   );
 };

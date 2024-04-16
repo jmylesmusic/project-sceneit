@@ -75,21 +75,20 @@ function Navbar() {
 
   const links = [
     { link: "/", label: "Movies" },
-    // { link: `/users/${user.userId}`, label: "User" },
     { link: "/about", label: "About" },
     { link: `/movies/${randomMovieId}`, label: "Random Movie!" },
   ];
 
-  // Combine standard links with the dynamic "Random Movie!" link
-  const items = [
-    ...links.map((link) => (
-      <Link key={link.label} to={link.link} className={classes.link}>
-        {link.label}
-      </Link>
-    )),
-  ];
+  // Add the "User" link if a user is signed in
+  if (user) {
+    links.push({ link: `/users/${user.userId}`, label: "User" });
+  }
 
-  const searchItems = [];
+  const items = links.map((link) => (
+    <Link key={link.label} to={link.link} className={classes.link}>
+      {link.label}
+    </Link>
+  ));
 
   return (
     <>
@@ -136,34 +135,11 @@ function Navbar() {
         overlayProps={{ opacity: 0.9, blur: 10, center: true }}
         offset={10}
         withCloseButton={false}
-        // Do we want  to be max width ?
-
-        // styles={{
-        //   content: {
-        //     width: 'auto',
-        //     maxWidth: '50%', // Ensure the Drawer does not exceed the screen width
-        //   },
-        // }}
       >
         <div className={classes.drawerLinks}>
           {items}
           <UserActionButton />
         </div>
-
-        <Autocomplete
-          className={classes.search}
-          placeholder="Search"
-          value={form.values.search}
-          onChange={(value) => form.setFieldValue("search", value)}
-          onSubmit={form.onSubmit(handleSearchSubmit)}
-          leftSection={
-            <IconSearch
-              style={{ width: rem(16), height: rem(16) }}
-              stroke={1.5}
-            />
-          }
-          data={searchItems}
-        />
       </Drawer>
 
       <SignIn opened={signInOpened} setOpened={setSignInOpened} />
