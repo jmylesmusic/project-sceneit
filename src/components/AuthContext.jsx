@@ -4,14 +4,16 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
+  const URL = import.meta.env.VITE_URL_IRONSACK;
+  console.log(URL)
   const login = async (username, password) => {
     // Simulate fetching user data from a local JSON server
+
     const response = await fetch(
-      `http://localhost:4000/users?logInName=${username}&password=${password}`
+      `${URL}/users?logInName=${username}&password=${password}`
     );
     const users = await response.json();
-
+    console.log(`Users:`, users)
     if (users.length > 0) {
       setUser({
         userId: users[0].userId,
