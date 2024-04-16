@@ -9,6 +9,7 @@ import { useAuth } from "../components/AuthContext";
 import SignIn from "../components/SignIn";
 import { useForm } from "@mantine/form";
 import SearchBar from "../components/SearchBar";
+import websiteLogo from "../images/logo-no-background.svg";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ function Navbar() {
 
   const links = [
     { link: "/", label: "Movies" },
-    // { link: `/users/${user.userId}`, label: "User" },
+    { link: `/users/1`, label: "User" },
     { link: "/about", label: "About" },
     { link: `/movies/${randomMovieId}`, label: "Random Movie!" },
   ];
@@ -102,7 +103,7 @@ function Navbar() {
               size="sm"
               hiddenFrom="sm"
             />
-            <MantineLogo size={28} />
+            <img src={websiteLogo} height={"40px"} />
           </Group>
 
           <SearchBar />
@@ -126,7 +127,7 @@ function Navbar() {
               size="sm"
               hiddenFrom="sm"
             />
-            <MantineLogo size={28} />
+            <img src={websiteLogo} height={"40px"} />
           </Group>
         }
         padding="md"
@@ -149,21 +150,6 @@ function Navbar() {
           {items}
           <UserActionButton />
         </div>
-
-        <Autocomplete
-          className={classes.search}
-          placeholder="Search"
-          value={form.values.search}
-          onChange={(value) => form.setFieldValue("search", value)}
-          onSubmit={form.onSubmit(handleSearchSubmit)}
-          leftSection={
-            <IconSearch
-              style={{ width: rem(16), height: rem(16) }}
-              stroke={1.5}
-            />
-          }
-          data={searchItems}
-        />
       </Drawer>
 
       <SignIn opened={signInOpened} setOpened={setSignInOpened} />
