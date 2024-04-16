@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Autocomplete, Group, Burger, rem, Drawer } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconSearch } from "@tabler/icons-react";
-import { MantineLogo } from "@mantinex/mantine-logo";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "../styles/HeaderSearch.module.css";
 import { useAuth } from "../components/AuthContext";
@@ -16,9 +15,14 @@ function Navbar() {
   const { user, logout } = useAuth();
   const [opened, { toggle }] = useDisclosure(false);
   const [signInOpened, setSignInOpened] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   const randomMovieId = Math.floor(Math.random() * 1012272) + 1;
 
+  const useButtonNavigate = () => {
+    navigate("/");
+  };
   const API_KEY = import.meta.env.VITE_PRIVATE_API_KEY; // Make sure to define your API key in the .env file
 
   const form = useForm({
@@ -76,10 +80,10 @@ function Navbar() {
 
   const links = [
     { link: "/", label: "Movies" },
-    { link: `/users/1`, label: "User" },
+    user && { link: `/users/${user.userId}`, label: "User" }, // Render "User" link only if user is signed in
     { link: "/about", label: "About" },
     { link: `/movies/${randomMovieId}`, label: "Random Movie!" },
-  ];
+  ].filter(Boolean);
 
   // Combine standard links with the dynamic "Random Movie!" link
   const items = [
@@ -103,7 +107,12 @@ function Navbar() {
               size="sm"
               hiddenFrom="sm"
             />
-            <img src={websiteLogo} height={"40px"} />
+            <img
+              src={websiteLogo}
+              height={"40px"}
+              onClick={useButtonNavigate}
+              className={classes.logoImage}
+            />
           </Group>
 
           <SearchBar />
@@ -127,7 +136,12 @@ function Navbar() {
               size="sm"
               hiddenFrom="sm"
             />
-            <img src={websiteLogo} height={"40px"} />
+            <img
+              className={classes.logoImage}
+              src={websiteLogo}
+              height={"40px"}
+              onClick={useButtonNavigate}
+            />
           </Group>
         }
         padding="md"
