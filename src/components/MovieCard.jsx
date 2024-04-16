@@ -9,32 +9,33 @@ import {
 } from "@mantine/core";
 import { Link } from "react-router-dom";
 import placeholder from "../images/noimage.png";
+import UserButtons from "./UserButtons";
 
 const MovieCard = (props) => {
   const theme = useMantineTheme();
   const { movie } = props;
 
   return (
-    <Link to={`/movies/${movie.id}`} style={{ textDecoration: "none" }}>
-      <Card
-        shadow="sm"
-        p="lg"
-        radius="md"
-        withBorder
-        style={{
-          maxWidth: 540,
-          minHeight: "100%", // Ensures that all cards have at least a certain height
-          minWidth : "350px",
-          margin: "auto",
-        }}
-      >
+    <Card
+      shadow="sm"
+      p="lg"
+      radius="md"
+      withBorder
+      style={{
+        maxWidth: 540,
+        minHeight: "100%", // Ensures that all cards have at least a certain height
+        minWidth: "350px",
+        margin: "auto",
+      }}
+    >
+      <Link to={`/movies/${movie.id}`} style={{ textDecoration: "none" }}>
         <Group position="apart">
           <Card.Section style={{ maxWidth: "35%" }}>
             <Image
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path || ""}`}
               alt={movie.title}
               fit="cover"
-              padding= "10px"
+              padding="10px"
               style={{ height: "200px" }} // Fixed height for images
               onError={(e) => {
                 e.currentTarget.src = placeholder;
@@ -72,8 +73,9 @@ const MovieCard = (props) => {
             {/* Additional buttons or information can go here */}
           </Group>
         </Group>
-      </Card>
-    </Link>
+      </Link>
+      <UserButtons movieId={movie.id} />
+    </Card>
   );
 };
 

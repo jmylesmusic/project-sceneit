@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
-          <Route path="/users/:userId" element={<User />} />
+          <Route path="/users/:id" element={<User />} />
           <Route path="/search-results" element={<SearchResults />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

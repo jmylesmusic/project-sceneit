@@ -4,7 +4,7 @@ import { useAuth } from "../components/AuthContext"; // Import useAuth from Auth
 import SignIn from "../components/SignIn";
 
 const User = () => {
-  const { userId } = useParams();
+  const { id } = useParams();
   const { user } = useAuth(); // Access user from AuthContext
   const navigate = useNavigate(); // Used to redirect
   const BACKEND_URL = import.meta.env.VITE_URL_IRONSACK;
@@ -16,14 +16,14 @@ const User = () => {
       return;
     }
 
-    if (user.userId.toString() !== userId) {
-      navigate("/"); // Redirect to home if userId in the URL does not match the logged-in user's ID
+    if (user.id.toString() !== id) {
+      navigate("/"); // Redirect to home if id in the URL does not match the logged-in user's ID
       return;
     }
 
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`${BACKEND_URL}/users?userId=${userId}`);
+        const response = await fetch(`${BACKEND_URL}/users?id=${id}`);
         const data = await response.json();
         if (data.length > 0) {
           setUserinfo(data[0]); // Assuming the data returned is an array of users
@@ -37,7 +37,7 @@ const User = () => {
     };
 
     fetchUserData();
-  }, [userId, user, navigate, BACKEND_URL]);
+  }, [id, user, navigate, BACKEND_URL]);
 
   if (!userinfo) {
     return <p>Loading...</p>; // Handling the loading state
@@ -63,7 +63,7 @@ const User = () => {
       <p>
         To Watch Movies:{" "}
         {userinfo.movies
-          ?.filter((movie) => movie.ToWatch)
+          ?.filter((movie) => movie.toWatch)
           .map((movie) => movie.movieId)
           .join(", ") || "None"}
       </p>

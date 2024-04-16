@@ -80,7 +80,7 @@ function Navbar() {
 
   const links = [
     { link: "/", label: "Movies" },
-    user && { link: `/users/${user.userId}`, label: "User" }, // Render "User" link only if user is signed in
+    user && { link: `/users/${user.id}`, label: "User" }, // Render "User" link only if user is signed in
     { link: "/about", label: "About" },
     { link: `/movies/${randomMovieId}`, label: "Random Movie!" },
   ].filter(Boolean);

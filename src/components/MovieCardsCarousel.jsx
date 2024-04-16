@@ -60,7 +60,7 @@ function MovieCardsCarousel(props) {
       <div>{title}</div>
       <Carousel
         withIndicators
-        height={250}
+        height={300}
         slideSize={{ base: "100%", sm: "50%", md: "33.333333%" }}
         slideGap={{ base: 0, sm: "md" }}
         loop
