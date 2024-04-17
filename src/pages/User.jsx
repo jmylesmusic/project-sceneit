@@ -41,7 +41,7 @@ const User = () => {
     };
 
     fetchUserData();
-  }, [id, user, navigate, BACKEND_URL, userinfo]);
+  }, [id, user, navigate, BACKEND_URL]);
 
   if (!userinfo) {
     return <p>Loading...</p>; // Handling the loading state
