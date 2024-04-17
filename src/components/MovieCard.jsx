@@ -13,10 +13,8 @@ import UserButtons from "./UserButtons";
 
 const MovieCard = (props) => {
   const theme = useMantineTheme();
-  const { movie, local } = props;
-  if (local) {
-    movie;
-  }
+  const { movie } = props;
+
   console.log(movie);
   return (
     <Card

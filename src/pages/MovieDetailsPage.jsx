@@ -12,7 +12,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import placeholder from "../images/noimage.png";
-import adultmovie from "../images/adultmovie.png";
+import adultmovie from "../images/adult-movie.png";
 import UserButtons from "../components/UserButtons";
 import MovieCardsCarousel from "../components/MovieCardsCarousel";
 

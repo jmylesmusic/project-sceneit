@@ -41,17 +41,26 @@ const User = () => {
     };
 
     fetchUserData();
-  }, [id, user, navigate, BACKEND_URL]);
+  }, [id, user, navigate, BACKEND_URL, userinfo]);
 
   if (!userinfo) {
     return <p>Loading...</p>; // Handling the loading state
   }
 
+  const userMovieDataConvert = (movie) => {
+    return {
+      id: movie.movieId,
+
+      poster_path: "", // example placeholder, use actual property if available
+      title: `Title for ${movie.movieId}`, // example placeholder
+      release_date: "2021-01-01", // example placeholder
+      vote_average: 7.8, // example placeholder
+    };
+  };
   return (
     <div>
       <h2>First Name: {userinfo.firstName}</h2>
-
-      <h1>Favorite Movies: </h1>
+      <h1>Favorite Movies:</h1>
       <div>
         <Carousel
           withIndicators
@@ -65,28 +74,50 @@ const User = () => {
             ?.filter((movie) => movie.isFavorite)
             .map((movie) => (
               <Carousel.Slide key={movie.movieId}>
-                {console.log(movie)}
-                <MovieCard movie={movie} local={true} />
+                <MovieCard movie={userMovieDataConvert(movie)} />
               </Carousel.Slide>
-            ))
-            .join(", ") || "None"}
+            )) || <p>None</p>}
         </Carousel>
       </div>
       {/* <MovieCardsCarousel listtype={`${url}/now_playing`} /> */}
-      <p>
-        Watched Movies:{" "}
-        {userinfo.movies
-          ?.filter((movie) => movie.isWatched)
-          .map((movie) => movie.movieId)
-          .join(", ") || "None"}
-      </p>
-      <p>
-        To Watch Movies:{" "}
-        {userinfo.movies
-          ?.filter((movie) => movie.toWatch)
-          .map((movie) => movie.movieId)
-          .join(", ") || "None"}
-      </p>
+      <h1>Watched Movies:</h1>
+      <div>
+        <Carousel
+          withIndicators
+          height={300}
+          slideSize={{ base: "100%", sm: "50%", md: "33.333333%" }}
+          slideGap={{ base: 0, sm: "md" }}
+          loop
+          align="start"
+        >
+          {userinfo.movies
+            ?.filter((movie) => movie.isWatched)
+            .map((movie) => (
+              <Carousel.Slide key={movie.movieId}>
+                <MovieCard movie={userMovieDataConvert(movie)} />
+              </Carousel.Slide>
+            )) || <p>None</p>}
+        </Carousel>
+      </div>
+      <h1>Movies to Watch:</h1>
+      <div>
+        <Carousel
+          withIndicators
+          height={300}
+          slideSize={{ base: "100%", sm: "50%", md: "33.333333%" }}
+          slideGap={{ base: 0, sm: "md" }}
+          loop
+          align="start"
+        >
+          {userinfo.movies
+            ?.filter((movie) => movie.toWatch)
+            .map((movie) => (
+              <Carousel.Slide key={movie.movieId}>
+                <MovieCard movie={userMovieDataConvert(movie)} />
+              </Carousel.Slide>
+            )) || <p>None</p>}
+        </Carousel>
+      </div>
     </div>
   );
 };
