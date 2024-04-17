@@ -25,7 +25,7 @@ function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  const randomMovieId = Math.floor(Math.random() * 1012272) + 1;
+  const randomMovieId = Math.floor(Math.random() * 1275860) + 1;
 
   const useButtonNavigate = () => {
     navigate("/");

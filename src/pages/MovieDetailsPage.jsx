@@ -53,7 +53,7 @@ function MovieDetailsPage() {
         }
         const data = await response.json();
         setMovie(data);
-        console.log("Movie Data:", data); // Log the movie data
+        // console.log("Movie Data:", data); // Log the movie data
       } catch (error) {
         console.error("Fetch error:", error.message);
         setError(`Failed to load movie data: ${error.message}`);
@@ -135,7 +135,7 @@ function MovieDetailsPage() {
           User Score: {Math.round(movie.vote_average * 10)}%
         </Text>
       </Group>
-      <UserButtons movieId={movie.id} />
+      <UserButtons movieData={movie} />
     </Card>
   );
 }

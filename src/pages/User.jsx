@@ -7,9 +7,8 @@ import MovieCard from "../components/MovieCard";
 import MovieCardsCarousel from "../components/MovieCardsCarousel";
 
 const User = () => {
-  const url = "https://api.themoviedb.org/3/movie";
   const { id } = useParams();
-  const { user } = useAuth(); // Access user from AuthContext
+  const { user, userMovies } = useAuth(); // Access user from AuthContext
   const navigate = useNavigate(); // Used to redirect
   const BACKEND_URL = import.meta.env.VITE_URL_IRONSACK;
   const [userinfo, setUserinfo] = useState(null); // Initialize userinfo to null
@@ -41,7 +40,7 @@ const User = () => {
     };
 
     fetchUserData();
-  }, [id, user, navigate, BACKEND_URL]);
+  }, [id, user, navigate, BACKEND_URL, userMovies]);
 
   if (!userinfo) {
     return <p>Loading...</p>; // Handling the loading state
@@ -50,13 +49,13 @@ const User = () => {
   const userMovieDataConvert = (movie) => {
     return {
       id: movie.movieId,
-
-      poster_path: "", // example placeholder, use actual property if available
-      title: `Title for ${movie.movieId}`, // example placeholder
-      release_date: "2021-01-01", // example placeholder
-      vote_average: 7.8, // example placeholder
+      poster_path: movie.poster_path,
+      title: movie.title,
+      release_date: movie.release_date,
+      vote_average: movie.vote_average,
     };
   };
+
   return (
     <div>
       <h2>First Name: {userinfo.firstName}</h2>

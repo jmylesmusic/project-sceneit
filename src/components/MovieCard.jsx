@@ -15,7 +15,7 @@ const MovieCard = (props) => {
   const theme = useMantineTheme();
   const { movie } = props;
 
-  console.log(movie);
+  // console.log(movie);
   return (
     <Card
       shadow="sm"
@@ -76,7 +76,7 @@ const MovieCard = (props) => {
           </Group>
         </Group>
       </Link>
-      <UserButtons movieId={movie.id} />
+      <UserButtons movieData={movie} />
     </Card>
   );
 };
