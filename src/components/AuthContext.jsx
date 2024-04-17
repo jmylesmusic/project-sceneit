@@ -6,12 +6,12 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userMovies, setUserMovies] = useState([]);
-  const URL = import.meta.env.VITE_URL_IRONSACK;
+  const BACKEND_URL = import.meta.env.VITE_URL_IRONSACK;
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const login = async (username, password) => {
+  const login = async (email, password) => {
     const response = await fetch(
-      `${URL}/users?logInName=${username}&password=${password}`
+      `${BACKEND_URL}/users?email=${email}&password=${password}`
     );
     const users = await response.json();
     if (users.length > 0) {
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     try {
-      const response = await fetch(`${URL}/users/${user.id}`, {
+      const response = await fetch(`${BACKEND_URL}/users/${user.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedUser),

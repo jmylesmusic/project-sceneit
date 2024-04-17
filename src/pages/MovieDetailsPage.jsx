@@ -12,6 +12,9 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import placeholder from "../images/noimage.png";
+import adultmovie from "../images/adultmovie.png";
+import UserButtons from "../components/UserButtons";
+import MovieCardsCarousel from "../components/MovieCardsCarousel";
 
 function MovieDetailsPage() {
   const { movieId } = useParams(); // Extract `movieId` from the URL
@@ -65,7 +68,7 @@ function MovieDetailsPage() {
   if (loading) return <Loader />; // Using Mantine's Loader for better UI
   if (error) return <div>Error: {error}</div>;
   if (!movie) return <div>No movie data found</div>;
-
+  // Handle image function
   return (
     <Card
       shadow="sm"
@@ -78,7 +81,9 @@ function MovieDetailsPage() {
         <Image
           src={
             movie.poster_path
-              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+              ? movie.adult
+                ? adultmovie
+                : `https://image.tmdb.org/t/p/w500${movie.poster_path}`
               : placeholder
           }
           alt={movie.title}
@@ -130,6 +135,7 @@ function MovieDetailsPage() {
           User Score: {Math.round(movie.vote_average * 10)}%
         </Text>
       </Group>
+      <UserButtons movieId={movie.id} />
     </Card>
   );
 }

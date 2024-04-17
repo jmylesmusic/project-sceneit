@@ -13,8 +13,11 @@ import UserButtons from "./UserButtons";
 
 const MovieCard = (props) => {
   const theme = useMantineTheme();
-  const { movie } = props;
-
+  const { movie, local } = props;
+  if (local) {
+    movie;
+  }
+  console.log(movie);
   return (
     <Card
       shadow="sm"
@@ -26,6 +29,7 @@ const MovieCard = (props) => {
         minHeight: "100%", // Ensures that all cards have at least a certain height
         minWidth: "350px",
         margin: "auto",
+        backgroundColor: "whitesmoke",
       }}
     >
       <Link to={`/movies/${movie.id}`} style={{ textDecoration: "none" }}>

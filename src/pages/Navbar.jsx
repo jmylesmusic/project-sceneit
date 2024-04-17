@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Autocomplete, Group, Burger, rem, Drawer } from "@mantine/core";
+import {
+  Autocomplete,
+  Group,
+  Burger,
+  rem,
+  Drawer,
+  Button,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconSearch } from "@tabler/icons-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -65,24 +72,27 @@ function Navbar() {
   const UserActionButton = () => {
     if (user) {
       return (
-        <button type="button" onClick={logout}>
+        <Button type="button" onClick={logout}>
           Logout
-        </button>
+        </Button>
       );
     } else {
       return (
-        <button type="button" onClick={() => setSignInOpened(true)}>
+        <Button type="button" onClick={() => setSignInOpened(true)}>
           Login
-        </button>
+        </Button>
       );
     }
   };
 
   const links = [
-    { link: "/", label: "Movies" },
+    { link: "/movies", label: "Movies" },
     user && { link: `/users/${user.id}`, label: "User" }, // Render "User" link only if user is signed in
     { link: "/about", label: "About" },
-    { link: `/movies/${randomMovieId}`, label: "Random Movie!" },
+    {
+      link: `/movies/${randomMovieId}`,
+      label: "Random Movie!",
+    },
   ].filter(Boolean);
 
   // Combine standard links with the dynamic "Random Movie!" link
@@ -109,7 +119,7 @@ function Navbar() {
             />
             <img
               src={websiteLogo}
-              height={"40px"}
+              height={"35px"}
               onClick={useButtonNavigate}
               className={classes.logoImage}
             />
@@ -136,20 +146,20 @@ function Navbar() {
               size="sm"
               hiddenFrom="sm"
             />
-            <img
+            {/*             <img
               className={classes.logoImage}
               src={websiteLogo}
               height={"40px"}
               onClick={useButtonNavigate}
-            />
+            /> */}
           </Group>
         }
         padding="md"
         size="xs"
         radius="md"
-        position="top"
+        position="left"
         overlayProps={{ opacity: 0.9, blur: 10, center: true }}
-        offset={10}
+        offset={0}
         withCloseButton={false}
         // Do we want  to be max width ?
 
@@ -160,7 +170,7 @@ function Navbar() {
         //   },
         // }}
       >
-        <div className={classes.drawerLinks}>
+        <div className={classes.drawerLinks} onClick={toggle}>
           {items}
           <UserActionButton />
         </div>

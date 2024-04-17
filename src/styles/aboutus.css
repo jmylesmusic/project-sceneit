@@ -1,0 +1,26 @@
+.aboutus-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.aboutus-user {
+  display: block;
+  padding: auto;
+  max-width: 40%;
+  padding: 5%;
+}
+
+.profile {
+  width: 150px;
+}
+
+@media only screen and (max-width: 500px) {
+  .aboutus-container {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .aboutus-user {
+    display: block;
+    max-width: 90%;
+  }
+}

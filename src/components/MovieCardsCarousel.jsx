@@ -20,7 +20,7 @@ function MovieCardsCarousel(props) {
 
   // Extract the last part of the URL to use as key in the dictionary
   const key = listtype.split("/").pop();
-  const title = typeTitles[key] || "Movies"; // Default title if key is not found
+  const title = typeTitles[key] || ""; // Default title if key is not found
 
   useEffect(() => {
     async function fetchData() {
@@ -57,7 +57,7 @@ function MovieCardsCarousel(props) {
 
   return (
     <>
-      <div>{title}</div>
+      <h1>{title}</h1>
       <Carousel
         withIndicators
         height={300}

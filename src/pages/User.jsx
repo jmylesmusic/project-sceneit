@@ -2,8 +2,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "../components/AuthContext"; // Import useAuth from AuthContext
 import SignIn from "../components/SignIn";
+import { Carousel } from "@mantine/carousel";
+import MovieCard from "../components/MovieCard";
+import MovieCardsCarousel from "../components/MovieCardsCarousel";
 
 const User = () => {
+  const url = "https://api.themoviedb.org/3/movie";
   const { id } = useParams();
   const { user } = useAuth(); // Access user from AuthContext
   const navigate = useNavigate(); // Used to redirect
@@ -45,14 +49,30 @@ const User = () => {
 
   return (
     <div>
-      <p>First Name: {userinfo.firstName}</p>
-      <p>
-        Favorite Movies:{" "}
-        {userinfo.movies
-          ?.filter((movie) => movie.isFavorite)
-          .map((movie) => movie.movieId)
-          .join(", ") || "None"}
-      </p>
+      <h2>First Name: {userinfo.firstName}</h2>
+
+      <h1>Favorite Movies: </h1>
+      <div>
+        <Carousel
+          withIndicators
+          height={300}
+          slideSize={{ base: "100%", sm: "50%", md: "33.333333%" }}
+          slideGap={{ base: 0, sm: "md" }}
+          loop
+          align="start"
+        >
+          {userinfo.movies
+            ?.filter((movie) => movie.isFavorite)
+            .map((movie) => (
+              <Carousel.Slide key={movie.movieId}>
+                {console.log(movie)}
+                <MovieCard movie={movie} local={true} />
+              </Carousel.Slide>
+            ))
+            .join(", ") || "None"}
+        </Carousel>
+      </div>
+      {/* <MovieCardsCarousel listtype={`${url}/now_playing`} /> */}
       <p>
         Watched Movies:{" "}
         {userinfo.movies

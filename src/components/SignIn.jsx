@@ -1,4 +1,7 @@
+// THIS IS THE ONE WE NEED TO USE https://ui.mantine.dev/component/authentication-form/
+
 import { useState } from "react";
+import SignUp from "./SignUp";
 import {
   TextInput,
   PasswordInput,
@@ -14,6 +17,7 @@ import { useAuth } from "./AuthContext";
 
 function SignIn({ opened, setOpened }) {
   const { login } = useAuth();
+  const [signUpOpened, setSignUpOpened] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -41,35 +45,65 @@ function SignIn({ opened, setOpened }) {
     </Tooltip>
   );
 
+  const UserActionButton = () => {
+    if (user) {
+      return (
+        <button type="button" onClick={logout}>
+          Logout
+        </button>
+      );
+    } else {
+      return (
+        <button type="button" onClick={() => setSignInOpened(true)}>
+          Login
+        </button>
+      );
+    }
+  };
+
+  const handleCloseModal = () => {
+    setOpened(false);
+  };
+
   return (
-    <Modal
-      opened={opened}
-      onClose={() => setOpened(false)}
-      title="Sign In"
-      centered
-    >
-      <form onSubmit={handleSubmit}>
-        <TextInput
-          label="Email"
-          placeholder="Your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          rightSection={rightSection}
-          required
-        />
-        <PasswordInput
-          label="Password"
-          placeholder="Your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          mt="md"
-        />
-        <Group position="right" mt="md">
-          <Button type="submit">Log In</Button>
-        </Group>
-      </form>
-    </Modal>
+    <>
+      <Modal opened={opened} onClose={() => setOpened(false)} centered>
+        {" "}
+        {signUpOpened ? (
+          <SignUp setSignUpOpened={setSignUpOpened} />
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <h1>Login</h1>
+            <TextInput
+              label="Email"
+              placeholder="Your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              rightSection={rightSection}
+              required
+            />
+            <PasswordInput
+              label="Password"
+              placeholder="Your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              mt="md"
+            />
+            <Group position="right" mt="md">
+              <Button type="submit">Log In</Button>
+            </Group>
+          </form>
+        )}
+        <Button onClick={() => setSignUpOpened(!signUpOpened)}>
+          {signUpOpened
+            ? "Already have an account? Login here!"
+            : "Create a new account"}
+        </Button>
+      </Modal>
+
+      {/* <SignUp opened={signUpOpened} setOpened={setSignUpOpened} /> */}
+    </>
   );
 }
 
