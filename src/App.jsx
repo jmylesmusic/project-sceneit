@@ -11,6 +11,7 @@ import {
   SearchResults,
 } from "./pages";
 import classes from "./styles/App.module.css"; // Import the CSS module here
+import Movies from "./pages/Movies";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/users/:id" element={<User />} />
           <Route path="/search-results" element={<SearchResults />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="/movies" element={<Movies />} />
         </Routes>
       </div>
       <Footer />
