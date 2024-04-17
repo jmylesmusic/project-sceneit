@@ -4,7 +4,7 @@ import { ActionIcon, rem } from "@mantine/core";
 import { IconHeart, IconBookmark, IconEye } from "@tabler/icons-react";
 import SignIn from "../components/SignIn"; // Import the SignIn component
 
-const UserButtons = ({ movieId }) => {
+const UserButtons = ({ movieData }) => {
   const URL = import.meta.env.VITE_URL_IRONSACK;
   const { user, userMovies, updateUserMovies } = useAuth();
   const [state, setState] = useState({
@@ -14,10 +14,11 @@ const UserButtons = ({ movieId }) => {
   });
   const [signInOpened, setSignInOpened] = useState(false); // State to control sign-in modal
 
+  // console.log(movieData);
   // Initialize button states from userMovies if user is logged in
   useEffect(() => {
-    if (user && Array.isArray(userMovies)) {
-      const movie = userMovies.find((m) => m.movieId === movieId);
+    if (user && Array?.isArray(userMovies)) {
+      const movie = userMovies.find((m) => m.movieId === movieData.id);
       if (movie) {
         setState({
           isFavorite: movie.isFavorite,
@@ -32,7 +33,7 @@ const UserButtons = ({ movieId }) => {
       // If userMovies is not array or user is not logged in
       setState({ isFavorite: false, isWatched: false, toWatch: false });
     }
-  }, [user, userMovies, movieId]);
+  }, [user, userMovies, movieData]);
 
   const toggleState = async (type) => {
     if (!user) {
@@ -43,19 +44,26 @@ const UserButtons = ({ movieId }) => {
     // Determine the property to toggle based on 'type'
 
     const updatedMovies = userMovies.map((movie) =>
-      movie.movieId === movieId ? { ...movie, [type]: !movie[type] } : movie
+      movie.movieId === movieData.id
+        ? { ...movie, [type]: !movie[type] }
+        : movie
     );
 
     // If the movie isn't found, it means we need to add it to the list
-    if (!updatedMovies.find((m) => m.movieId === movieId)) {
+    if (!updatedMovies.find((m) => m.movieId === movieData.id)) {
       updatedMovies.push({
-        movieId: movieId,
+        movieId: movieData.id,
+        poster_path: movieData.poster_path,
+        title: movieData.title,
+        release_date: movieData.release_date,
+        vote_average: movieData.vote_average,
         isFavorite: type === "isFavorite" ? true : false,
         isWatched: type === "isWatched" ? true : false,
         toWatch: type === "toWatch" ? true : false,
       });
     }
 
+    console.log("UPDATED MOVIES LIST", updatedMovies);
     // Call the method from context to update the movies array
     updateUserMovies(updatedMovies);
   };

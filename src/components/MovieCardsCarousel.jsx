@@ -40,7 +40,7 @@ function MovieCardsCarousel(props) {
         }
         const data = await response.json();
         setList(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error("Fetch error:", error);
         setError(error.message);
