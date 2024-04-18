@@ -5,7 +5,7 @@
   background-image: url("../images/movie-watching.jpg");
   background-size: cover;
   background-position: center;
-  height: 500px;
+  max-height: 580px;
 
   @media (max-width: $mantine-breakpoint-xs) {
     padding-top: rem(80px);
