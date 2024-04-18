@@ -24,7 +24,7 @@ const MovieCard = (props) => {
       withBorder
       style={{
         maxWidth: 540,
-        minHeight: "300px", // Ensures that all cards have at least a certain height
+        minHeight: "250px", // Ensures that all cards have at least a certain height
         minWidth: "350px",
         margin: "auto",
         backgroundColor: "var(--fadedpurple)",
