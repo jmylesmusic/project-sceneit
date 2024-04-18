@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Autocomplete,
   Group,
@@ -16,6 +16,7 @@ import SignIn from "../components/SignIn";
 import { useForm } from "@mantine/form";
 import SearchBar from "../components/SearchBar";
 import websiteLogo from "../images/logo-no-background.svg";
+import websiteLogoTwo from "../images/small-logo-no-background.svg";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -24,8 +25,28 @@ function Navbar() {
   const [signInOpened, setSignInOpened] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [logo, setLogo] = useState(websiteLogo); // State to manage logo
 
   const randomMovieId = Math.floor(Math.random() * 1275860) + 1;
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Check window width
+      if (window.innerWidth < 425) {
+        setLogo(websiteLogoTwo); // Set logo to websiteLogoTwo if width is less than 400px
+      } else {
+        setLogo(websiteLogo); // Otherwise, set logo to the default websiteLogo
+      }
+    };
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup function to remove event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const useButtonNavigate = () => {
     navigate("/");
@@ -118,7 +139,7 @@ function Navbar() {
               hiddenFrom="sm"
             />
             <img
-              src={websiteLogo}
+              src={logo}
               height={"35px"}
               onClick={useButtonNavigate}
               className={classes.logoImage}

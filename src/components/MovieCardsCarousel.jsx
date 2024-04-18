@@ -62,7 +62,7 @@ function MovieCardsCarousel(props) {
         withIndicators
         height={300}
         slideSize={{ base: "100%", sm: "50%", md: "33.333333%" }}
-        slideGap={{ base: 0, sm: "md" }}
+        slideGap={{ base: 0, sm: "xl" }}
         loop
         align="start"
       >
