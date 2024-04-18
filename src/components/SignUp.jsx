@@ -1,4 +1,3 @@
-import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 import {
   TextInput,
@@ -12,8 +11,8 @@ import {
 } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons-react";
 
-function SignUp({ setSignUpOpened }) {
-  const [opened, { open, close }] = useDisclosure(false);
+function SignUp({ setOpened  }) {
+  // const [opened, { open, close }] = useDisclosure(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -21,7 +20,7 @@ function SignUp({ setSignUpOpened }) {
   const BACKEND_URL = import.meta.env.VITE_URL_IRONSACK;
   const rightSection = (
     <Tooltip
-      label="We store your data securely"
+      label="We store your data securely. NOT !"
       position="top-end"
       withArrow
       transitionProps={{ transition: "pop-bottom-right" }}
@@ -71,7 +70,7 @@ function SignUp({ setSignUpOpened }) {
       console.log(data);
       if (response.ok) {
         alert(`User ${email} created successfully!`);
-        setSignUpOpened(false);
+        setOpened("login");
       }
     } catch (error) {
       console.log(error);
@@ -79,6 +78,7 @@ function SignUp({ setSignUpOpened }) {
   }
 
   return (
+    <>
     <div>
       <h1>Create a New Account</h1>
       <form onSubmit={submitHandler}>
@@ -120,6 +120,7 @@ function SignUp({ setSignUpOpened }) {
         </Group>
       </form>
     </div>
+    </>
   );
 }
 

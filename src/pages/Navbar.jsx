@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
-  Autocomplete,
   Group,
   Burger,
-  rem,
   Drawer,
   Button,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconSearch } from "@tabler/icons-react";
+
 import { Link, useNavigate } from "react-router-dom";
 import classes from "../styles/HeaderSearch.module.css";
 import { useAuth } from "../components/AuthContext";
@@ -23,8 +21,6 @@ function Navbar() {
   const { user, logout } = useAuth();
   const [opened, { toggle }] = useDisclosure(false);
   const [signInOpened, setSignInOpened] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -132,7 +128,7 @@ function Navbar() {
               hiddenFrom="sm"
             />
             <img
-              src={windowWidth <= 425 ? websiteLogoSmall : websiteLogo}
+              src={windowWidth <= 855 ? websiteLogoSmall : websiteLogo}
               height={"35px"}
               onClick={useButtonNavigate}
               className={classes.logoImage}
