@@ -26,16 +26,11 @@ export const AuthProvider = ({ children }) => {
   const updateUserMovies = async (newMovies) => {
     setUserMovies(newMovies); // Update local state
 
-    const updatedUser = {
-      ...user,
-      movies: newMovies,
-    };
-
     try {
       const response = await fetch(`${BACKEND_URL}/users/${user.id}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedUser),
+        body: JSON.stringify({movies: newMovies}),
       });
 
       if (!response.ok) {
