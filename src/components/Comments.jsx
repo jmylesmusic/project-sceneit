@@ -55,11 +55,11 @@ export function Comments({ movieId }) {
     }
   };
 
-    
+
   return (
     <div>
       <SignIn opened={signInOpened} setOpened={setSignInOpened} />
-      {comments.map((comment) => (
+      {comments?.map((comment) => (
       <Group key={comment.id}>
         <Avatar
           src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-1.png"
