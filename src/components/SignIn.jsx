@@ -24,7 +24,7 @@ function SignIn({ opened, setOpened }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     login(email, password);
-    setOpened(false); // Close modal on successful login
+    handleCloseModal(); // Close modal on successful login
   };
 
   const rightSection = (
@@ -62,14 +62,13 @@ function SignIn({ opened, setOpened }) {
   };
 
   const handleCloseModal = () => {
-    setOpened(false);
+    setOpened("");
   };
 
   return (
     <>
-      <Modal opened={opened} onClose={() => setOpened(false)} centered>
-        {" "}
-        {signUpOpened ? (
+      <Modal opened={opened} onClose={handleCloseModal} centered>
+        {opened === "signup" ? (
           <SignUp setSignUpOpened={setSignUpOpened} />
         ) : (
           <form onSubmit={handleSubmit}>
@@ -95,8 +94,10 @@ function SignIn({ opened, setOpened }) {
             </Group>
           </form>
         )}
-        <Button onClick={() => setSignUpOpened(!signUpOpened)}>
-          {signUpOpened
+        <Button
+          onClick={() => setOpened(opened === "signup" ? "login" : "signup")}
+        >
+          {opened === "signup"
             ? "Already have an account? Login here!"
             : "Create a new account"}
         </Button>

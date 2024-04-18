@@ -79,44 +79,47 @@ function SignUp({ setSignUpOpened }) {
   }
 
   return (
-    <form onSubmit={submitHandler}>
-      {" "}
-      <TextInput
-        label="First Name"
-        placeholder="First Name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        rightSection={rightSection}
-        required
-      />
-      <TextInput
-        label="Last Name"
-        placeholder="Last Name"
-        value={secondName}
-        onChange={(e) => setSecondName(e.target.value)}
-        rightSection={rightSection}
-        required
-      />
-      <TextInput
-        label="Email"
-        placeholder="Your email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        rightSection={rightSection}
-        required
-      />
-      <PasswordInput
-        label="Password"
-        placeholder="Your password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        mt="md"
-      />
-      <Group position="right" mt="md">
-        <Button type="submit">Create Account</Button>
-      </Group>
-    </form>
+    <div>
+      <h1>Create a New Account</h1>
+      <form onSubmit={submitHandler}>
+        {" "}
+        <TextInput
+          label="First Name"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          rightSection={rightSection}
+          required
+        />
+        <TextInput
+          label="Last Name"
+          placeholder="Last Name"
+          value={secondName}
+          onChange={(e) => setSecondName(e.target.value)}
+          rightSection={rightSection}
+          required
+        />
+        <TextInput
+          label="Email"
+          placeholder="Your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          rightSection={rightSection}
+          required
+        />
+        <PasswordInput
+          label="Password"
+          placeholder="Your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          mt="md"
+        />
+        <Group position="right" mt="md">
+          <Button type="submit">Create Account</Button>
+        </Group>
+      </form>
+    </div>
   );
 }
 

@@ -1,5 +1,17 @@
+:root {
+  --darkpurple: #03174d;
+  --midpurple: #28185d;
+  --teal: #0087b0;
+  --orange: #ff9d00;
+  --pink: #de5357;
+  --fadedpurple: #e9d5da;
+  --lightest: #ffffff;
+}
+
 html,
-body,
+body {
+  background: linear-gradient(115deg, var(--teal), var(--midpurple));
+}
 #root {
   margin: 0;
   padding: 0;

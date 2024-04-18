@@ -27,7 +27,7 @@ const MovieCard = (props) => {
         minHeight: "300px", // Ensures that all cards have at least a certain height
         minWidth: "350px",
         margin: "auto",
-        backgroundColor: "whitesmoke",
+        backgroundColor: "var(--lightest)",
         paddingTop: "3rem",
       }}
     >
