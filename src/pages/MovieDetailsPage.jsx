@@ -14,7 +14,7 @@ import {
 import placeholder from "../images/noimage.png";
 import adultmovie from "../images/adult-movie.png";
 import UserButtons from "../components/UserButtons";
-import MovieCardsCarousel from "../components/MovieCardsCarousel";
+import Comments from "../components/Comments";
 
 function MovieDetailsPage() {
   const { movieId } = useParams(); // Extract `movieId` from the URL
@@ -136,6 +136,7 @@ function MovieDetailsPage() {
         </Text>
       </Group>
       <UserButtons movieData={movie} />
+      <Comments movieId={movie.id} />
     </Card>
   );
 }
