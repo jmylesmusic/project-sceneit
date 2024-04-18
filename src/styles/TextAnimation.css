@@ -1,0 +1,17 @@
+.flying-text .char {
+    opacity: 0;
+    display: inline-block;
+    animation: fly-in 0.5s forwards;
+  }
+  
+  @keyframes fly-in {
+    from {
+      /* Start from the random position provided by the inline style */
+      /* Opacity starts from 0 as defined in the .char class */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0); /* End at the final position */
+    }
+  }
+  

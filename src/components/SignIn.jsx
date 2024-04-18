@@ -17,7 +17,6 @@ import { useAuth } from "./AuthContext";
 
 function SignIn({ opened, setOpened }) {
   const { login } = useAuth();
-  const [signUpOpened, setSignUpOpened] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -45,21 +44,21 @@ function SignIn({ opened, setOpened }) {
     </Tooltip>
   );
 
-  const UserActionButton = () => {
-    if (user) {
-      return (
-        <button type="button" onClick={logout}>
-          Logout
-        </button>
-      );
-    } else {
-      return (
-        <button type="button" onClick={() => setSignInOpened(true)}>
-          Login
-        </button>
-      );
-    }
-  };
+  // const UserActionButton = () => {
+  //   if (user) {
+  //     return (
+  //       <button type="button" onClick={logout}>
+  //         Logout
+  //       </button>
+  //     );
+  //   } else {
+  //     return (
+  //       <button type="button" onClick={() => setSignInOpened(true)}>
+  //         Login
+  //       </button>
+  //     );
+  //   }
+  // };
 
   const handleCloseModal = () => {
     setOpened("");
@@ -69,7 +68,7 @@ function SignIn({ opened, setOpened }) {
     <>
       <Modal opened={opened} onClose={handleCloseModal} centered>
         {opened === "signup" ? (
-          <SignUp setSignUpOpened={setSignUpOpened} />
+          <SignUp setOpened={setOpened} />
         ) : (
           <form onSubmit={handleSubmit}>
             <h1>Login</h1>

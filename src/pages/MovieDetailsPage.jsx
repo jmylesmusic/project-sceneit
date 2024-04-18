@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef  } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   Card,
@@ -15,6 +15,7 @@ import placeholder from "../images/noimage.png";
 import adultmovie from "../images/adult-movie.png";
 import UserButtons from "../components/UserButtons";
 import Comments from "../components/Comments";
+import alertSound from "../sounds/MGS_ALERT.mp3"
 
 function MovieDetailsPage() {
   const { movieId } = useParams(); // Extract `movieId` from the URL
@@ -26,8 +27,14 @@ function MovieDetailsPage() {
   const theme = useMantineTheme();
   const API_KEY = import.meta.env.VITE_PRIVATE_API_KEY;
   const navigate = useNavigate();
+  const audioRef = useRef(new Audio(alertSound));
+
+  
 
   useEffect(() => {
+     // Set the volume to 15% ... JEEZ !!
+    audioRef.current.volume = 0.1;
+
     async function fetchData() {
       const url = `https://api.themoviedb.org/3/movie/${movieId}`;
       const options = {
@@ -53,6 +60,9 @@ function MovieDetailsPage() {
         }
         const data = await response.json();
         setMovie(data);
+        if (data.adult) {
+          audioRef.current.play();  // Play the sound if the movie is an adult movie
+        }
         // console.log("Movie Data:", data); // Log the movie data
       } catch (error) {
         console.error("Fetch error:", error.message);
@@ -63,7 +73,7 @@ function MovieDetailsPage() {
     }
 
     fetchData();
-  }, [movieId, navigate]);
+  }, [movieId, navigate, API_KEY]);
 
   if (loading) return <Loader />; // Using Mantine's Loader for better UI
   if (error) return <div>Error: {error}</div>;
