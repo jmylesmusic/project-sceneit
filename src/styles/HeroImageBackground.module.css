@@ -1,11 +1,11 @@
 .wrapper {
   position: relative;
-  padding-top: rem(180px);
-  padding-bottom: rem(130px);
+  padding-top: rem(80px);
+  padding-bottom: rem(60px);
   background-image: url("../images/movie-watching.jpg");
   background-size: cover;
   background-position: center;
-  max-height: 580px;
+  max-height: auto;
 
   @media (max-width: $mantine-breakpoint-xs) {
     padding-top: rem(80px);
