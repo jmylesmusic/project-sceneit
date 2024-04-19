@@ -27,7 +27,7 @@ const About = () => {
         <div className="aboutus-user">
           <h2>James Myles</h2>
           <img src={jamesselfie} className="profile" />
-          <FlyingText text={jamesText} interval = {100} />  {/* You can adjust the interval as needed. The higher the slower */}
+          <FlyingText text={jamesText} interval = {20} />  {/* You can adjust the interval as needed. The higher the slower */}
           <a href="https://github.com/jmylesmusic" target="_blank">
             <Button color={"#2b3137"} leftSection={<GithubIcon size={18} />}>
               Github
