@@ -22,6 +22,13 @@ function SearchBar() {
     navigate(`/search-results?query=${encodeURIComponent(query)}`);
   };
   const matches = useMediaQuery(`(max-width: 420px)`);
+  const randomMatches = useMediaQuery(
+    `(min-width: 370px) and (max-width: 767px)`
+  );
+  const handleRandomMovieClick = () => {
+    const randomMovieId = Math.floor(Math.random() * 1275860) + 1;
+    navigate(`/movies/${randomMovieId}`);
+  };
   return (
     <form onSubmit={form.onSubmit(handleSearchSubmit)}>
       <Group>
@@ -32,6 +39,11 @@ function SearchBar() {
           style={{ flex: 1, maxWidth: "25vw" }}
         />
         <Button type="submit">{matches ? "🔎" : "Search"}</Button>
+        {randomMatches && (
+          <Button onClick={handleRandomMovieClick} type="button">
+            🎲
+          </Button>
+        )}
       </Group>
     </form>
   );
