@@ -6,8 +6,7 @@ import FlyingText from "../components/FlyingText";
 
 const danielText =`Daniel-Ionut Rancea is a seasoned Tech Artist transitioning to a Full-Stack Developer role. With extensive experience at Ubisoft and as a freelancer, he specializes in software development and 3D/VFX, including proficiency in object-oriented programming (OOP) which is foundational for his shift to full-stack development.
     Daniel-Ionut excels in Python, C++, and has developed tools for Blender, enhancing his deep understanding of both front-end and back-end development paradigms. His robust technical background is complemented by a bachelor’s degree in Foreign Languages and Literatures, equipping him with unique problem-solving and communication skills vital for his new career path.`
-const jamesText = `James Myles is a saxophonist, composer, and educator who is now transitioning into Full-Stack Web Development. He has experience in HTML, CSS,
-Javascript, React, and Bootstrap.`
+const jamesText = `James Myles is a saxophonist, composer, and educator who is now transitioning into Full-Stack Web Development. He has experience in HTML, CSS, Javascript, React, and Bootstrap.`
 
 
 const About = () => {
