@@ -58,7 +58,7 @@ const User = () => {
 
   return (
     <div>
-      <h2>Hello there {userinfo.firstName} {userinfo.secondName} !</h2>
+      <h2>Hello there, {userinfo.firstName} {userinfo.secondName}!</h2>
       <h1>Favorite Movies:</h1>
       <div>
         <Carousel
