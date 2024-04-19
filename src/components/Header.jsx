@@ -12,7 +12,7 @@ export function Header() {
   const { user } = useAuth();
 
   const HelloUser = () => {
-    return <h1 style={{ color: "white" }}>Welcome, {user.firstName}!</h1>;
+    return <div style={{ color: "white" }}>Welcome, {user.firstName}!</div>;
   };
 
   const HeaderButtons = () => {

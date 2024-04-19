@@ -48,37 +48,6 @@ function Navbar() {
     },
   });
 
-  const handleSearchSubmit = async (values) => {
-    const query = values.search;
-    console.log("Searching : ", query);
-    setSearchQuery(query);
-    if (query.trim() === "") {
-      setSearchResults([]);
-      return;
-    }
-
-    const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
-      query
-    )}&include_adult=false`;
-
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-    };
-
-    try {
-      const response = await fetch(url, options);
-      const data = await response.json();
-      setSearchResults(data.results); // Assuming the API response has a results array
-      console.log("Search Results", data.results);
-    } catch (err) {
-      console.error("error:" + err);
-    }
-  };
-
   const UserActionButton = () => {
     if (user) {
       return (
@@ -125,10 +94,10 @@ function Navbar() {
               opened={opened}
               onClick={toggle}
               size="sm"
-              hiddenFrom="sm"
+              hiddenFrom="md"
             />
             <img
-              src={windowWidth <= 855 ? websiteLogoSmall : websiteLogo}
+              src={windowWidth <= 980 ? websiteLogoSmall : websiteLogo}
               height={"35px"}
               onClick={useButtonNavigate}
               className={classes.logoImage}
@@ -137,7 +106,7 @@ function Navbar() {
 
           <SearchBar />
 
-          <Group className={classes.links} visibleFrom="sm">
+          <Group className={classes.links} visibleFrom="md">
             {items}
             <UserActionButton />
           </Group>
@@ -154,7 +123,7 @@ function Navbar() {
               opened={opened}
               onClick={toggle}
               size="sm"
-              hiddenFrom="sm"
+              hiddenFrom="md"
             />
             {/*             <img
               className={classes.logoImage}
