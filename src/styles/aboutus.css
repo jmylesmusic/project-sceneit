@@ -5,6 +5,7 @@
   justify-content: center;
   gap: 10%;
 }
+
 .aboutus-user {
   display: block;
   padding: auto;
@@ -19,11 +20,14 @@
   border-radius: 50%;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   .aboutus-container {
     flex-direction: column;
-    justify-content: center;
+    width: 90%;
+    margin: auto;
+    align-items: center;
   }
+
   .aboutus-user {
     display: block;
     max-width: 90%;
